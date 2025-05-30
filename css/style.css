@@ -1,3 +1,8 @@
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
 
 .parent {
     display: grid;
@@ -68,9 +73,9 @@
     display: flex;
     justify-content: flex-end;
     align-items: center;
-    gap: 10px; /* Khoảng cách giữa các phần tử */
+    gap: 5px; /* Khoảng cách giữa các phần tử */
     font-weight: bold; /* Bôi đậm text */
-    font-size: 30px;
+    font-size: 24px;
 }
 
 .div2 h1 {
@@ -92,7 +97,7 @@
 
 .div3 {
     grid-column: span 4 / span 4;
-    grid-row: span 4 / span 4;
+    grid-row: span 3 / span 4;
     grid-column-start: 2;
     grid-row-start: 2;
 }
