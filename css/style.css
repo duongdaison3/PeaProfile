@@ -14,11 +14,6 @@ html, body {
     
 .div1 {
     position: fixed;
-    top: 0;
-    left: 0;
-    width: 256px; /* hoặc đúng bằng w-64 bên HTML = 16 * 16px = 256px */
-    height: 100vh; /* full chiều cao */
-    z-index: 1000;
     grid-row: span 5 / span 5;
 }
 
@@ -76,7 +71,7 @@ html, body {
 }
 
 .div2 {
-    grid-column: span 4 / span 4;
+    grid-column: 2 / span 4;
     display: flex;
     justify-content: flex-end;
     align-items: center;
