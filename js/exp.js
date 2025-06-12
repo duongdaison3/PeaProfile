@@ -60,7 +60,7 @@ document.addEventListener('DOMContentLoaded', function () {
                         <div class="w-1 h-1 bg-black rounded-full absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"></div>
                     </div>
                     <div class="absolute top-6 left-0 ml-[8px] mt-[1px] w-[calc(25%-10px)] h-px bg-black"></div> 
-                    </div>
+                </div>
     
                 <div class="flex mb-6 flex-grow">
                     <div class="w-1/3">
