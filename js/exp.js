@@ -2,9 +2,8 @@ document.addEventListener('DOMContentLoaded', function () {
     // Lấy container div3 để chèn nội dung
     const experienceContainer = document.querySelector('.div3'); 
     
-    // Đảm bảo backend của bạn đang chạy trên port này, hoặc thay đổi cho đúng
-    // Dựa trên log trước đó của bạn, server backend có thể chạy trên port 3001
-    const backendUrl = 'http://localhost:3001/experiences'; 
+    // Đường dẫn tới file JSON chứa dữ liệu kinh nghiệm
+    const dataUrl = '/backend/exp.json';
 
     async function fetchExperiences() {
         if (!experienceContainer) {
@@ -12,15 +11,23 @@ document.addEventListener('DOMContentLoaded', function () {
             return;
         }
         try {
-            const response = await fetch(backendUrl);
+            const response = await fetch(dataUrl);
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
-            const experiences = await response.json();
+            const rawData = await response.json();
+            // File exp.json được xuất từ phpMyAdmin nên dữ liệu nằm trong thuộc tính `data`
+            let experiences = rawData;
+            if (Array.isArray(rawData)) {
+                const tableObj = rawData.find(item => item.type === 'table' && item.name === 'exp');
+                if (tableObj && Array.isArray(tableObj.data)) {
+                    experiences = tableObj.data;
+                }
+            }
             displayExperiences(experiences);
         } catch (error) {
             console.error("Không thể tải dữ liệu kinh nghiệm:", error);
-            experienceContainer.innerHTML = `<p class="text-red-500 col-span-full text-center p-4">Không thể tải dữ liệu kinh nghiệm. Vui lòng kiểm tra console và đảm bảo backend đang chạy.</p>`;
+            experienceContainer.innerHTML = `<p class="text-red-500 col-span-full text-center p-4">Không thể tải dữ liệu kinh nghiệm. Vui lòng kiểm tra console và đảm bảo file JSON tồn tại.</p>`;
         }
     }
 
